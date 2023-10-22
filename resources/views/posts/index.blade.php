@@ -108,10 +108,14 @@ body {
     <div class="bubble">
         <div class="bubble-content">
             <div class="bubble-text">
-        <span>{{ $post->title }}<br></span>
+            @if ($post instanceof \App\Models\Post)
+    <span>{{ $post->title }}<br></span>
     <span>{{ $post->body }}</span>
+        @elseif ($post instanceof \App\Models\Trick)
+    <span>{{ $post->trick_title }}<br></span>
+    <span>{{ $->trick_body }}</span>
+        @endif
     </div>
-    
     </div>
     <a href="/posts/{{ $post->id }}/edit" class="bubble-link">Trick</a>
 </div>
