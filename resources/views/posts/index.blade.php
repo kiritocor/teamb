@@ -43,29 +43,54 @@
         
         .bubble {
             background-color: black;
-            color: #fff;
+            color: orange;
             border-radius: 25px;
             padding: 5px 10px;
             margin: 5px;
             text-align: left;
-            display: inline-block; /* バブルをインラインブロック要素に設定 */
+            display: flex; /* バブルをインラインブロック要素に設定 */
     max-width: 80%; /* バブルの最大幅を設定 */
     word-wrap: break-word; /* 長いテキストがはみ出さないように改行 */
     position: relative; /* 親要素の相対位置指定 */
         }
-        
-        .bubble-link {
-    color: orange; /* リンクのテキストカラー */
-    position: absolute; /* 絶対位置指定 */
-    bottom: 5px; /* 下からの位置調整 */
-    right: 10px; /* 右からの位置調整 */
-}
         
         a {
     color: orange; /* ここで新しいテキストカラーを指定 */
   }
         .right-align {
     display: inline-block;
+}
+
+.bubble a {
+    color: orange; /* リンクのテキストカラー */
+}
+
+.bubble-link {
+    background-color: #AD002D;
+            border-radius: 25px;
+            padding: 5px 10px;
+            margin: 5px;
+            text-align: left;
+            display: flex; /* バブルをインラインブロック要素に設定 */
+    max-width: 80%; /* バブルの最大幅を設定 */
+    word-wrap: break-word; /* 長いテキストがはみ出さないように改行 */
+    position: relative; /* 絶対位置指定 */
+    top: 30px; /* 下からの位置調整 */
+color: orange; /* リンクのテキストカラー */
+
+    bottom: 5px; /* 下からの位置調整 */
+    left: 10px; /* 右からの位置調整 */
+}
+.bubble-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.bubble-text {
+    flex-grow: 1;
+}
+body {
+    background-color: #001d42;
 }
         </style>
         <!-- Fonts -->
@@ -80,9 +105,16 @@
         <div class="middle">
             @foreach ($posts as $post)
             <li class="right-align">
-    <div class="bubble"><a href="/posts/{{ $post->id }}">{{ $post->title }}<br>
-    {{ $post->body }}</a>
+    <div class="bubble">
+        <div class="bubble-content">
+            <div class="bubble-text">
+        <span>{{ $post->title }}<br></span>
+    <span>{{ $post->body }}</span>
     </div>
+    
+    </div>
+    <a href="/posts/{{ $post->id }}/edit" class="bubble-link">Trick</a>
+</div>
     </li>
             @endforeach
         </div>
