@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 50);
             $table->string('body', 200);
-            $table->foreignId('category_id')->constrained();
+            $table->bigInteger('treat_like');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,5 +31,9 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('posts');
+    }
+    
+    public function tricks() {
+        return $this->hasOne(Trick::class);
     }
 };
