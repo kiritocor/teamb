@@ -32,4 +32,8 @@ return new class extends Migration
     {
         Schema::dropIfExists('posts');
     }
+    
+    public function tricks() {
+        return $this->hasOne(Trick::class);
+    }
 };
