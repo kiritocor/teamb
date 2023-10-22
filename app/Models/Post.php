@@ -14,4 +14,8 @@ class Post extends Model
         'body',
         'treat_like',
     ];
+    
+    public function tricks() {
+        return $this->hasOne(Trick::class);
+    }
 }
