@@ -8,9 +8,20 @@ use App\Models\Trick;
 
 class PostController extends Controller
 {
-    public function index(Post $post)
+    public function index(Post $post, Trick $trick)
     {
-        return view('posts/index')->with(['posts' => $post->get()]);
+        // Trickモデルにアクセスし、指定されたpost_idに関連するトリックを取得
+        $tricks = $trick->get();
+        
+        // postテーブルからトリックに関連しない投稿を取得
+        $unrelatedPosts = Post::whereNotIn('id', $tricks->pluck('post_id'))->get();
+        
+        $combinedData = $tricks->concat($unrelatedPosts);
+        
+        // 作成日順に並べ替え
+        $combinedData = $combinedData->sortByDesc('created_at');
+        
+        return view('posts/index')->with(['posts' => $combinedData]);
     }
     
      public function create()
@@ -18,9 +29,20 @@ class PostController extends Controller
         return view('posts/create');
     }
 
-    public function show(Post $post)
+    public function show(Post $post, Trick $trick)
     {
-        return view('posts/show')->with(['post' => $post]);
+        // Trickモデルにアクセスし、指定されたpost_idに関連するトリックを取得
+        $tricks = $trick->get();
+        
+        // postテーブルからトリックに関連しない投稿を取得
+        $unrelatedPosts = Post::whereNotIn('id', $tricks->pluck('post_id'))->get();
+        
+        $combinedData = $tricks->concat($unrelatedPosts);
+        
+        // 作成日順に並べ替え
+        $combinedData = $combinedData->sortByDesc('created_at');
+        
+        return view('posts/show')->with(['posts' => $combinedData]);
     }
 
     public function store(Post $post, Request $request)
@@ -55,7 +77,7 @@ class PostController extends Controller
         // データベースに保存
         $trick->save();
         
-        return response()->json(['message' => 'Data saved successfully']); 
+        return redirect('/');
     }
 
 }
