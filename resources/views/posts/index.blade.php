@@ -118,9 +118,7 @@ body {
     </li>
             @endforeach
         </div>
-        <div>
-            {{ $posts->links() }}
-        </div>
+        
         </div>
     </body>
 </html>
