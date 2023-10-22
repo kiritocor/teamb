@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('tricks', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 50);
-            $table->string('body', 200);
+            $table->text('title');
+            $table->text('body');
             $table->foreignId('post_id')->constrained('posts');
             $table->bigInteger('treat_like')->nullable(true);
             $table->timestamps();
