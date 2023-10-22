@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title', 50);
             $table->string('body', 200);
             $table->foreignId('post_id')->constrained('posts');
-            $table->bigInteger('treat_like')->nullable('true');
+            $table->bigInteger('treat_like')->nullable(true);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -34,7 +34,4 @@ return new class extends Migration
         Schema::dropIfExists('tricks');
     }
     
-    public function post(){
-        return $this->hasOne(Post::class);
-    }
 };
