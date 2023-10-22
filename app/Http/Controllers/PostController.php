@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
-use App\Models\Category;
 
 class PostController extends Controller
 {
     public function index(Post $post)
     {
         return view('posts/index')->with(['posts' => $post->get()]);
+    }
+    
+     public function create()
+    {
+        return view('posts/create');
     }
 
     public function show(Post $post)
@@ -22,7 +26,7 @@ class PostController extends Controller
     {
         $input = $request['post'];
         $post->fill($input)->save();
-        return redirect('/' . $post->id);
+        return redirect('/');
     }
 
     public function edit(Post $post)
