@@ -112,8 +112,8 @@ body {
     <span>{{ $post->title }}<br></span>
     <span>{{ $post->body }}</span>
         @elseif ($post instanceof \App\Models\Trick)
-    <span>{{ $post->trick_title }}<br></span>
-    <span>{{ $->trick_body }}</span>
+    <span>{{ $trick->_title }}<br></span>
+    <span>{{ $trick->_body }}</span>
         @endif
     </div>
     </div>
