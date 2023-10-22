@@ -241,11 +241,12 @@
                 //送信するやつ
                 messages
                 )
-            }).then(res => {}).catch(err => console.log(err));
+            }).then(res => {}).then(data => {
+                // メッセージが送信された後の処理を行う
+                alert("メッセージが保存されました。");
+                // リダイレクト
+                window.location.href = "/"})
         });
     </script>
-</html>
-
-    
 </html>
 

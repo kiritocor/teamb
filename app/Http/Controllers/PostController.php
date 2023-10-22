@@ -20,18 +20,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        // Trickモデルにアクセスし、指定されたpost_idに関連するトリックを取得
-$tricks = Trick::where('post_id', $post_id)->get();
-
-// postテーブルからトリックに関連しない投稿を取得
-$unrelatedPosts = Post::whereNotIn('id', $tricks->pluck('post_id'))->get();
-
-$combinedData = $tricks->concat($unrelatedPosts);
-
-// 作成日順に並べ替え
-$combinedData = $combinedData->sortBy('created_at');
-        
-        return view('posts/show')->with(['posts' => $combinedData]);
+        return view('posts/show')->with(['post' => $post]);
     }
 
     public function store(Post $post, Request $request)
