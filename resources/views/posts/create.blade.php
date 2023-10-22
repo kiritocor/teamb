@@ -79,7 +79,6 @@
          <div class="middle">
         <form action="/posts" method="POST">
             @csrf
-            
                 <h2>題して</h2>
                 <input type="text" name="post[title]" placeholder="本当にあったハロウィン" value="{{ old('post.title') }}"/>
                 <p class="title__error" style="color:red">{{ $errors->first('post.title') }}</p>
