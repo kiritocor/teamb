@@ -176,6 +176,44 @@
              <button id="replaceButton4" class="btnripple">Trick4</button>
              <button id="replaceButton5" class="btnripple">Trick5</button>
              <button id="sendButton">Save</button>
+        <style>
+        
+        .Trick1{color:red;
+                font-family:Chokokutai;
+                }
+                
+         .Trick2{filter: blur(1.5px);
+                font-family:Chokokutai;
+                }
+                
+         .Trick3{filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+                font-family:Chokokutai;
+                }
+                
+         .Trick4{color:teal;
+                font-family:Rock 3D;
+                }
+        
+         </style>
+        
+    </head>
+    <body>
+        <h1 class="title">編集画面</h1>
+        <div class="content">
+             <div class='content__title'>
+                    <h2>タイトル</h2>
+                    <h2>{{ $post->title }}</h2>
+                </div>
+                <div class='content__body'>
+                    <h2>本文</h2>
+                    <h2>{{ $post->body }}</h2>
+                    
+                </div>
+            
+             <button id="replaceButton1">Trick1</button>
+             <button id="replaceButton2">Trick2</button>
+             <button id="replaceButton3">Trick3</button>
+             <button id="replaceButton4">Trick4</button>
         </div>
     </body>
     <script>
@@ -234,7 +272,7 @@
          document.getElementById('replaceButton4').addEventListener('click', function() {
             var selectedText = window.getSelection().toString();
             var newText = "<nobr class=Trick4>" + selectedText + "</nobr>";
-
+            
             var selection = window.getSelection();
             if (selection.rangeCount > 0) {
                 var range = selection.getRangeAt(0);

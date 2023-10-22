@@ -139,6 +139,7 @@ body {
             </div>
         </div>
         <a href="/posts/{{ $post->id }}/edit" class="bubble-link">Trick</a>
+
     </div>
     </li>
             @endforeach
