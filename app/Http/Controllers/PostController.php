@@ -46,12 +46,27 @@ $combinedData = $combinedData->sortBy('created_at');
         return view('posts/edit')->with(['post' => $post]);
     }
 
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Trick $trick)
     {
-        $input_post = $request['post'];
-        $post->fill($input_post)->save();
-
-        return redirect('/posts/' . $post->id);
+        
+        $data = json_decode($request->getContent(), true);
+        // データベースに保存 
+        // HTMLデータからtitleとbodyを抽出する方法については注意が必要です。 
+        // この例では、titleタグとbodyタグを正規表現を使用して抽出しています。 
+        // 実際のHTML構造に合わせて調整してください。 
+        // Titleを抽出 
+        $title = $data[0];
+        // Bodyを抽出
+        $body = $data[1];
+        $id = $data[2];
+        
+        $trick->title=$title;
+        $trick->body=$body;
+        $trick->post_id=$id;
+        // データベースに保存
+        $trick->save();
+        
+        return response()->json(['message' => 'Data saved successfully']); 
     }
 
 }
