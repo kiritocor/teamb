@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 50);
             $table->string('body', 200);
-            $table->bigInteger('treat_like');
+            $table->bigInteger('treat_like')->nullable(true);
             $table->timestamps();
             $table->softDeletes();
         });
