@@ -18,16 +18,11 @@ class PostController extends Controller
         return view('posts/show')->with(['post' => $post]);
     }
 
-    public function create(Category $category)
-    {
-        return view('posts/create')->with(['categories' => $category->get()]);
-    }
-
     public function store(Post $post, Request $request)
     {
         $input = $request['post'];
         $post->fill($input)->save();
-        return redirect('/posts/' . $post->id);
+        return redirect('/' . $post->id);
     }
 
     public function edit(Post $post)
